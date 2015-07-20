@@ -1,0 +1,23 @@
+<form action="/article/author/{{id}}" method="POST" style="clear: left; text-align: center;">
+	
+	<input type="hidden" name="_method" value="PUT">
+
+		Article Title: <input type="text" name="title" value="{{article_title}}"><br> <br>
+		
+
+		<h3 style="text-align: center">Edit this article</h3>
+		<textarea class="text" name="description" style="text-align: left; width: 400px; height: 400px; overflow: auto;" >{{article_desc}}</textarea>
+		<br>
+	<input type="submit" value="Submit">
+
+</form>
+
+	<br>
+
+<form action="/article/author/{{id}}" method="POST" style="clear: left; text-align: center;">
+	
+	<input type="hidden" name="_method" value="DELETE">
+
+	<button>DELETE ARTICLE</button>
+
+</form>

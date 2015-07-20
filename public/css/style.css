@@ -1,0 +1,80 @@
+body {
+  width: 100%;
+  height: 100%;
+  font-family: Raleway;
+  font-weight: 300;
+  background: white;
+}
+#container {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+}
+.nav {
+  text-align: center;
+  width: 100%;
+  height: 300px;
+  float: left;
+}
+.nav a, .nav a:visited {
+  text-decoration: none;
+  font-size: 30px;
+  color: black;
+  padding: 30px;
+}
+
+
+.nav a:hover{
+  color: lavender;
+}
+
+
+header {
+  text-align: center;
+}
+
+.cat {
+  text-align: center;
+  width: 100%;
+  float: left;
+}
+.cat a, .nav a:visited {
+  text-decoration: none;
+  font-size: 30px;
+  color: black;
+}
+
+
+.cat a:hover{
+  color: blue;
+}
+
+.sign {
+    float: right;
+    position: relative;
+    margin-right: 100px;
+}
+
+.sign a {
+  font-size: 16px;
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+
+}
+
+.sign a:hover{
+  color: blue;
+}
+
+.signup {
+  position:absolute;
+  width:250px;
+  height:200px;
+  z-index:15;
+  top:50%;
+  left:50%;
+  margin:-100px 0 0 -150px;
+  text-align: center;
+}
+

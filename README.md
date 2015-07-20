@@ -1,1 +1,1 @@
-# wicki
+# wikipagia
