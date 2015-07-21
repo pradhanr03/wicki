@@ -18,6 +18,17 @@ module.exports.controller = function(app) {
       	res.render('articleEdit', data);
     	});
   	});
+
+	app.get('/contribute/:id', function (req, res) {
+    	// Article.find( req.params.id, function (data) {
+      		//when you have sessions figured out
+      		//use '/contribute/:id' as the route, and pass in the id when user logs in
+      	Article.getWithAuthors( req.params.id, function (data){
+	     	console.log(data);      		
+      	res.render('newPost', data);
+    	});
+  	});
+
 };
 
  

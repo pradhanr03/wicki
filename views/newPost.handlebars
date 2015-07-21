@@ -1,8 +1,22 @@
-</section>
-  <h2>Users</h2>
-  <section id="users"></section>
-  <h2>New Post</h2>
-  <section id="new-post">
-    <textarea name="" id="new-post-content" cols="30" rows="10"></textarea><br>
-    <button id="new-post-button">Create Post</button>
-  </section>
+	<h1 style="text-align: center">Write an article</h1>
+
+  <form action="/posts" method="POST" style="clear: left; text-align: center;">
+		<h2>Author: {{author.name}}</h2>
+		<div>
+		<select name ="category_id">
+		{{#each categories}}
+		<option value="{{id}}">{{category}}</option>
+		{{/each}}
+		</select>
+		</div>
+		<br>
+		
+		Article Title: <input type="text" name="title" placeholder="Enter Title"><br> <br>
+	
+
+		
+		<textarea class="text" name="description" style="text-align: left; width: 400px; height: 400px; overflow: auto;" >{{article_desc}}</textarea>
+		<br>
+	<input type="submit" value="Submit">
+
+</form>

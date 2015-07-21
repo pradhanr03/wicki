@@ -19,12 +19,15 @@ module.exports.Article = {
   getWithAuthors : function( id, callback){
     db.find('authors', id, function (authors) {
       db.findRelations('articles', 'author_id', id, function (articles) {
-        var data = {
+        db.all('categories', function (categories) {
+          var data = {
           author: authors[0],
-          articles: articles[0]
+          articles: articles[0],
+          categories: categories
         };
-
+        console.log(data);
         callback(data);
+        });
       });
     });
   },
@@ -38,5 +41,26 @@ module.exports.Article = {
 
         callback(data);
     });
-  }
+  },
+  create: function(table, obj, id, cb) {
+    pg.connect(dbUrl, function(err, client, done) {
+      var keys = [];
+      var values = [];
+      var dollars = [];
+      Object.keys(obj).forEach(function(key, i) {
+        keys.push(key);
+        values.push(obj[keys[i]]);
+        dollars.push('$' + (i + 1));
+      })
+      var queryString = 'INSERT INTO ' + table + '(' + keys.join(',') + ') VALUES(' + dollars.join(',') + ')';
+      client.query(queryString, values, function(err, result) {
+        done();
+        if (err) {
+          console.error('error running query', err);
+        }
+        cb(result)
+      });
+    })
+    this.end();
+  }, //need to edit this create function
 }

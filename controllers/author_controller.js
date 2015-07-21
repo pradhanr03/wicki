@@ -12,6 +12,15 @@ module.exports.controller = function(app) {
 		});
 	});
 
+	app.get('/article/contact/:id', function (req, res) {
+		Author.find(req.params.id, function(data) {
+			// res.render('articleIndex', data);
+			console.log(data);
+			res.render('sendEmail', data);
+		});
+	});
+
+
 	app.get('/signup', function (req, res) {
 		res.render('signup');
 		
@@ -40,17 +49,20 @@ module.exports.controller = function(app) {
 	app.post('/sessions', function(req, res) {
 	  var email = req.body.email;
 	  var password = req.body.password;
-
+	  console.log(email);
+	  console.log(password);
+	  console.log(req.session);
 	  Author
-	    .findUser({
-	    	email: req.body.email
-	    }, function(user) {
+	    .findUser( email, function(user) {
 	    	console.log(user);
 	      if (user) {
-	        bcrypt.compare(password, user.password_digest, function(err, result) {
+	        bcrypt.compare(password, user.password, function(err, result) {
 	          if (result) {
 	            req.session.currentUser = user.id;
-	            res.send(user);
+	            // res.send(user);
+	            
+	            res.render('userPage', user);
+
 	          } else {
 	            res.status(400);
 	            res.send({
@@ -94,24 +106,47 @@ module.exports.controller = function(app) {
 	//     });
 	// });
 
-	// app.post('/posts', function(req, res) {
-	//   if (req.session.currentUser) {
-	//     Post
-	//       .create({
-	//         content: req.body.content,
-	//         user_id: req.session.currentUser
-	//       })
-	//       .then(function(post) {
-	//         res.send(post);
-	//       });
-	//   } else {
-	//     res.status(403);
-	//     res.send({
-	//       err: 403,
-	//       msg: 'You must log in to create posts'
-	//     });
-	//   }
-	// });
+	app.post('/posts', function(req, res) {
+	  if (req.session.currentUser) {
+	    Author
+	      .createArticle({
+	        article_title: req.body.title,
+	        article_desc: req.body.description,
+	        author_id: req.session.currentUser,
+	        category_id: req.body.category_id
+	      }, function(newpost) {
+	        // res.send(newpost);
+	        console.log(newpost);
+	        res.redirect('/');
+	      });
+	  } else {
+	    res.status(403);
+	    res.send({
+	      err: 403,
+	      msg: 'You must log in to create posts'
+	    });
+	  }
+	});
+
+app.put('/article/author/:id', function(req, res) {
+	  if (req.session.currentUser) {
+	    Author
+	      .updateArticle({
+	        article_title: req.body.title,
+	        article_desc: req.body.description
+	      }, req.params.id, function(data) {
+	        // res.send(newpost);
+	        console.log(data);
+	        res.redirect('/');
+	      });
+	  } else {
+	    res.status(403);
+	    res.send({
+	      err: 403,
+	      msg: 'You must log in to create posts'
+	    });
+	  }
+	});
 
 	// app.use(express.static('./public'));
 
