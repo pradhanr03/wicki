@@ -11,9 +11,8 @@ var logger = require('morgan');
 var path = require('path');
 var db = require('./db.js');
 var router = express.Router();
-var u = 'wikipedia';
-var pass = 'test1234';
-var SendGrid = require('sendgrid')(process.env.u, process.env.pass);
+var key = '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';
+var sendgrid = require('sendgrid')(key);
 
 
 app.listen(3000);
@@ -57,24 +56,25 @@ app.get('/', function (req, res) {
   res.render('home');
 });
 
-
-  router.post('/sendEmail/:id', function(req, res) {
+app.post('/sendEmail/:id', function(req, res) {
       db.find('authors', req.params.id, function (data) {
-        console.log(data);
-        var email = data.email;
+        console.log(data[0]);
+        var email = data[0].email;
         var message = req.body.description;
         var sender = req.body.sender;
 
         console.log(email+message+sender);
 
-          sendgrid.send({
-          to:       email,
-          from:     sender,
-          subject:  'Hello World',
-          text:     message
-        }, function(err, json) {
+          var payload = new sendgrid.Email({
+                to:       email,
+                from:     sender,
+                subject:  'Hello World',
+                text:     message
+          });
+
+          sendgrid.send(payload, function(err, json) {
           if (err) { return console.error(err); }
-          res.send('yay');
+          res.redirect('/');
         });
 
       });
@@ -82,4 +82,4 @@ app.get('/', function (req, res) {
 
   });
 
-  module.exports = router;
+  // module.exports = router;
