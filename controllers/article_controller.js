@@ -29,6 +29,8 @@ module.exports.controller = function(app) {
     	});
   	});
 
+  	
+
   	app.get('/about', function (req, res) {
   		Article.about( function (data) {
 	    console.log(data);

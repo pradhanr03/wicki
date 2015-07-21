@@ -15,7 +15,9 @@ var key = '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
 var sendgrid = require('sendgrid')(key);
 
 
-app.listen(3000);
+// app.listen(3000);
+
+app.set('port', (process.env.PORT || 3000));
 
 app.engine('handlebars', exphbs({defaultLayout: 'main', extname: 'handlebars'}));
 app.set('views', path.join(root, 'views'));
@@ -82,4 +84,7 @@ app.post('/sendEmail/:id', function(req, res) {
 
   });
 
-  // module.exports = router;
+// app.get('/random', function (req, res) {
+//   res
+// })
+

@@ -59,6 +59,7 @@ module.exports.controller = function(app) {
 	  console.log(email);
 	  console.log(password);
 	  console.log(req.session);
+	  // var logg = $('.sign');
 	  Author
 	    .findUser( email, function(user) {
 	    	console.log(user);
@@ -88,7 +89,21 @@ module.exports.controller = function(app) {
 	    });
 	});
 
+	// app.get('/contribute', function (req, res) {
+    	
+ //      		if ( ( req.session.currentUser === null ) || ( req.session.currentUser === undefined ) ) {
+ //            res.redirect( '/login' );
+ //        	} 	else {
+			      	   		
+	// 		      	res.redirect('/contribute/:id');
+     		 	
+ //     		 	}
+ //  	});
+
+  
+
 	app.delete('/sessions', function(req, res) {
+	  console.log('hello');
 	  req.session.currentUser = null;
 	  // res.send({ msg: 'Successfully logged out' });
 	  res.redirect('/');
@@ -157,29 +172,7 @@ app.put('/article/author/:id', function(req, res) {
 	  }
 	});
 
-	// router.post('/sendEmail/:id', function(req, res) {
- //   		Author.find( req.params.id, function (data) {
- //   			console.log(data);
- //   			var email = data.email;
- //   			var message = req.body.description;
- //   			var sender = req.body.sender;
-
- //   			console.log(email+message+sender);
-
- //   				sendgrid.send({
-	// 			  to:       email,
-	// 			  from:     sender,
-	// 			  subject:  'Hello World',
-	// 			  text:     message
-	// 			}, function(err, json) {
-	// 			  if (err) { return console.error(err); }
-	// 			  res.send('yay');
-	// 			});
-
- //   		});
-
-
- //   	});
+	
 };
 
 
