@@ -10,6 +10,10 @@ var methodOverride = require('method-override');
 var logger = require('morgan');
 var path = require('path');
 var db = require('./db.js');
+var router = express.Router();
+var u = 'wikipedia';
+var pass = 'test1234';
+var SendGrid = require('sendgrid')(process.env.u, process.env.pass);
 
 
 app.listen(3000);
@@ -52,3 +56,30 @@ fs.readdirSync('./controllers').forEach(function (file) {
 app.get('/', function (req, res) {
   res.render('home');
 });
+
+
+  router.post('/sendEmail/:id', function(req, res) {
+      db.find('authors', req.params.id, function (data) {
+        console.log(data);
+        var email = data.email;
+        var message = req.body.description;
+        var sender = req.body.sender;
+
+        console.log(email+message+sender);
+
+          sendgrid.send({
+          to:       email,
+          from:     sender,
+          subject:  'Hello World',
+          text:     message
+        }, function(err, json) {
+          if (err) { return console.error(err); }
+          res.send('yay');
+        });
+
+      });
+
+
+  });
+
+  module.exports = router;

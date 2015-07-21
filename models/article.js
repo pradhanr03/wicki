@@ -11,6 +11,12 @@ module.exports.Article = {
       callback(data);
     });
   },
+  about : function (callback) {
+    db.all('abouts', function (about) {
+      console.log(about);
+      callback(about[0]);
+    });
+  },
   find : function(id, callback){
     db.find('articles', id, function (data) {
       callback( data[0] );

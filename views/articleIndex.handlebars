@@ -1,23 +1,25 @@
-<h1 style="text-align: center">Articles</h1>
+<h1 style="text-align: center">Article</h1>
 
 
 
 	<div class='cat'>
 		
 			<h3>{{articles.article_title}}</h3>
-			<p>author:{{articles.name}}</p>
+			<p>Author: {{articles.name}}</p>
 			<br>
 			<p>{{articles.article_desc}}</p>
-	</div>
+	
+	<br>
+	<br>
+	<br>
 
-<div>
 <p>Date last modified: {{articles.date}}</p>
-</div>
-<div>
+<br>
+<div id ='link'>
 <a href="/article/edit/{{articles.id}}">Edit this Article</a>
 </div>
-<div>
+<div id='link'>
 <a href="/article/contact/{{articles.author_id}}">Contact: {{articles.name}}</a>
-
+</div>
 
 </div>

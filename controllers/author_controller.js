@@ -1,4 +1,11 @@
+// var express = require('express');
+// var router = express.Router();
+
 var bcrypt = require('bcrypt');
+// var u = 'wikipedia';
+// var pass = 'test1234';
+// var SendGrid = require('sendgrid')(process.env.u, process.env.pass);
+
 var Author = require('../models/author.js').Author;
 
 module.exports.controller = function(app) {
@@ -81,22 +88,24 @@ module.exports.controller = function(app) {
 	    });
 	});
 
-	// app.delete('/sessions', function(req, res) {
-	//   req.session.currentUser = null;
-	//   res.send({ msg: 'Successfully logged out' });
-	// });
+	app.delete('/sessions', function(req, res) {
+	  req.session.currentUser = null;
+	  // res.send({ msg: 'Successfully logged out' });
+	  res.redirect('/');
+	});
 
-	// app.get('/current_user', function(req, res) {
-	//   if (req.session.currentUser) {
-	//     User
-	//       .findOne(req.session.currentUser)
-	//       .then(function(user) {
-	//         res.send(user);
-	//       });
-	//   } else {
-	//     res.send(null);
-	//   }
-	// });
+	app.get('/current_user', function(req, res) { //not sure what to do with this?
+	  if (req.session.currentUser) {
+
+	    Author
+	      .find(req.session.currentUser, 
+	      function(user) {
+	        res.send(user);
+	      });
+	  } else {
+	    res.send(null);
+	  }
+	});
 
 	// app.get('/posts', function(req, res) {
 	//   Post
@@ -148,9 +157,31 @@ app.put('/article/author/:id', function(req, res) {
 	  }
 	});
 
-	// app.use(express.static('./public'));
+	// router.post('/sendEmail/:id', function(req, res) {
+ //   		Author.find( req.params.id, function (data) {
+ //   			console.log(data);
+ //   			var email = data.email;
+ //   			var message = req.body.description;
+ //   			var sender = req.body.sender;
 
-	// app.listen(3000, function() {
-	//   console.log('Listening on port 3000...');
-	// });
+ //   			console.log(email+message+sender);
+
+ //   				sendgrid.send({
+	// 			  to:       email,
+	// 			  from:     sender,
+	// 			  subject:  'Hello World',
+	// 			  text:     message
+	// 			}, function(err, json) {
+	// 			  if (err) { return console.error(err); }
+	// 			  res.send('yay');
+	// 			});
+
+ //   		});
+
+
+ //   	});
 };
+
+
+
+
