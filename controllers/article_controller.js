@@ -13,8 +13,9 @@ module.exports.controller = function(app) {
 
 	app.get('/article/edit/:id', function (req, res) {
     	Article.find( req.params.id, function (data) {
-      		console.log(data);
-      		console.log(data[0]);
+      		console.log("testing");
+          console.log(data);
+      		
       	res.render('articleEdit', data);
     	});
   	});
@@ -38,6 +39,23 @@ module.exports.controller = function(app) {
 	      res.render('about', data);
 	 	});
 	});
+
+    app.delete('/article/:id', function(req, res) {
+    console.log('hello');
+       if (req.session.currentUser) {
+        Article.delete(req.params.id, function (data) {
+          res.redirect('/');
+        });
+      } else {
+      res.status(403);
+      res.redirect('/login');
+      }
+    });
+
+
+    // res.send({ msg: 'Successfully logged out' });
+
+   
 
 };
 

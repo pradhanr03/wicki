@@ -36,25 +36,26 @@
           <input type="submit" value="Category">
          </form>
       </div>
-      <div id='button'>
-         <form action="/featured">
-          <input type="submit" value="Featured">
-         </form>
-      </div>
+      
     <!--   <a href="/featured">Featured</a> -->
 
        <div id='button'>
         <form>
-         <!-- <input class="rand" type="button" value="Random" /> -->
+        <input class="MyButton" type="button" value="Featured" onclick="window.location.href='https://en.wikipedia.org/wiki/Portal:Featured_content'" />
+        </form>
+       </div>
+
+       <div id='button'>
+        <form>
         <input class="MyButton" type="button" value="Random" onclick="window.location.href='http://en.wikipedia.org/wiki/Special:Random'" />
         </form>
-      </div>
+       </div>
      
     </nav>
 
 
     </header>
-    <div class='sign'>
+    <!-- <div class='sign'>
       <ul class="nav navbar-nav">
           <li>
               {{#if currentUser}}
@@ -78,8 +79,7 @@
       </ul> 
        <!-- <a href="/signup">Sign Up</a>
                 <a href="/login">Log In</a>   -->
-    </div>
-    
+   <!--  </div>  -->
     <div id='random'><div>
     {{{body}}}
     </div>

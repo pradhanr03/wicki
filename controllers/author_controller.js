@@ -67,6 +67,7 @@ module.exports.controller = function(app) {
 	        bcrypt.compare(password, user.password, function(err, result) {
 	          if (result) {
 	            req.session.currentUser = user.id;
+	            req.session.name = user.name;
 	            // res.send(user);
 	            
 	            res.render('userPage', user);
@@ -89,6 +90,14 @@ module.exports.controller = function(app) {
 	    });
 	});
 
+	app.get('/sessions', function (req, res) {
+		Author
+	    .findUser( req.session.currentUser, function(user) {
+	    	console.log(user);
+	    	res.render('userPage', user);
+	    });	
+	});
+
 	// app.get('/contribute', function (req, res) {
     	
  //      		if ( ( req.session.currentUser === null ) || ( req.session.currentUser === undefined ) ) {
@@ -105,6 +114,7 @@ module.exports.controller = function(app) {
 	app.delete('/sessions', function(req, res) {
 	  console.log('hello');
 	  req.session.currentUser = null;
+	  req.session.name = null;
 	  // res.send({ msg: 'Successfully logged out' });
 	  res.redirect('/');
 	});
@@ -131,6 +141,7 @@ module.exports.controller = function(app) {
 	// });
 
 	app.post('/posts', function(req, res) {
+	 
 	  if (req.session.currentUser) {
 	    Author
 	      .createArticle({
@@ -162,13 +173,10 @@ app.put('/article/author/:id', function(req, res) {
 	        // res.send(newpost);
 	        console.log(data);
 	        res.redirect('/');
-	      });
+	    });
 	  } else {
 	    res.status(403);
-	    res.send({
-	      err: 403,
-	      msg: 'You must log in to create posts'
-	    });
+	    res.redirect('/login');
 	  }
 	});
 

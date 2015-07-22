@@ -19,7 +19,9 @@ module.exports.Article = {
   },
   find : function(id, callback){
     db.find('articles', id, function (data) {
-      callback( data[0] );
+      console.log(data);
+      console.log(data[0]);
+      callback( data[0]);
     });
   },
   getWithAuthors : function( id, callback){
@@ -69,4 +71,13 @@ module.exports.Article = {
     })
     this.end();
   }, //need to edit this create function
+
+  delete: function (id, cb) {
+    db.delete('articles', id, function (articles) {
+
+       
+    });
+  }
+   
+  
 }
