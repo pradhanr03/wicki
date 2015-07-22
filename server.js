@@ -60,19 +60,16 @@ fs.readdirSync('./controllers').forEach(function (file) {
 
 //ROOT ROUTE
 app.get('/', function (req, res) {
-var userId = req.session.currentUser;
+var user = req.session.currentUser;
 var name = req.session.name;
-//    db.find('authors', userId, function (author) {
-//     console.log(author[0]);
-      
-// });
+var id = req.session.id;
+
 console.log(">>>>>>>>>>>");
 console.log(data);
 var data ={
-        user: userId,
+        user: user,
         name: name
-        // name: author[0]
-      }
+   }
   res.render('home', data);
   
 });

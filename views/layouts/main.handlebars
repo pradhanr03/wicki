@@ -16,70 +16,15 @@
   
   <body>
     <div class='wrapper'>
-    <header>
-    <!-- <div id="logo">
-    <a href='/'><img src ='../pic/w.png' style="width:50px; height:50px" /></a>
-    </div> -->
-      <a href="/" style="text-decoration: none; color: black;">
-        <h1 style="left-margin: 20px;">W</h1>
+    
+<header>
+ <a href="/" style="text-decoration: none; color: black;">
+        <h1 style="margin-left: 40px;">W</h1>
       </a>
-     <!--  {{{header}}} -->
-    <nav class="nav">
-     <div id='button'>
-         <form action="/about">
-          <input type="submit" value="About">
-         </form>
-      </div>
-     <!--  <a href="/categories">Category</a> -->
-      <div id='button'>
-         <form action="/categories">
-          <input type="submit" value="Category">
-         </form>
-      </div>
-      
-    <!--   <a href="/featured">Featured</a> -->
-
-       <div id='button'>
-        <form>
-        <input class="MyButton" type="button" value="Featured" onclick="window.location.href='https://en.wikipedia.org/wiki/Portal:Featured_content'" />
-        </form>
-       </div>
-
-       <div id='button'>
-        <form>
-        <input class="MyButton" type="button" value="Random" onclick="window.location.href='http://en.wikipedia.org/wiki/Special:Random'" />
-        </form>
-       </div>
-     
-    </nav>
-
-
+      {{{header}}}
+    
     </header>
-    <!-- <div class='sign'>
-      <ul class="nav navbar-nav">
-          <li>
-              {{#if currentUser}}
-                <p class="navbar-text">
-                  <strong>YELLOW,</strong> 
-                 
-                  {{name}}
-                </p>
-                </li>
-                </ul>
-                <ul>
-                  <li>
-                    <a href="/logout">Logg Out</a>
-                  </li>
-              {{else}}
-                <a href="/signup">Sign Up</a>
-                <a href="/login">Log In</a>
 
-          </li>
-              {{/if}}
-      </ul> 
-       <!-- <a href="/signup">Sign Up</a>
-                <a href="/login">Log In</a>   -->
-   <!--  </div>  -->
     <div id='random'><div>
     {{{body}}}
     </div>

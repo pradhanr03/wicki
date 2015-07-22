@@ -1,3 +1,41 @@
+
+ <header>
+ 
+    <nav class="nav">
+     <div id='button'>
+         <form action="/about">
+          <input type="submit" value="About">
+         </form>
+      </div>
+     <!--  <a href="/categories">Category</a> -->
+      <div id='button'>
+         <form action="/categories">
+          <input type="submit" value="Category">
+         </form>
+      </div>
+      	
+      <div id='button'>
+         <form action="/contribute/{{id}}">
+          <input type="submit" value="Contribute">
+         </form>
+      </div>
+      	
+       <div id='button'>
+        <form>
+        <input class="MyButton" type="button" value="Featured" onclick="window.location.href='https://en.wikipedia.org/wiki/Portal:Featured_content'" />
+        </form>
+       </div>
+
+       <div id='button'>
+        <form>
+        <input class="MyButton" type="button" value="Random" onclick="window.location.href='http://en.wikipedia.org/wiki/Special:Random'" />
+        </form>
+       </div>
+     
+    </nav>
+    </header>
+
+
 	<h1 style="text-align: center">Write an article</h1>
 
   <form action="/posts" method="POST" style="clear: left; text-align: center;">

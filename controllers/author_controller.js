@@ -69,8 +69,8 @@ module.exports.controller = function(app) {
 	            req.session.currentUser = user.id;
 	            req.session.name = user.name;
 	            // res.send(user);
-	            
-	            res.render('userPage', user);
+	            res.redirect('/');
+	            // res.redirect('userPage', user);
 
 	          } else {
 	            res.status(400);
@@ -98,25 +98,12 @@ module.exports.controller = function(app) {
 	    });	
 	});
 
-	// app.get('/contribute', function (req, res) {
-    	
- //      		if ( ( req.session.currentUser === null ) || ( req.session.currentUser === undefined ) ) {
- //            res.redirect( '/login' );
- //        	} 	else {
-			      	   		
-	// 		      	res.redirect('/contribute/:id');
-     		 	
- //     		 	}
- //  	});
-
-  
-
+	
 	app.delete('/sessions', function(req, res) {
 	  console.log('hello');
 	  req.session.currentUser = null;
 	  req.session.name = null;
-	  // res.send({ msg: 'Successfully logged out' });
-	  res.redirect('/');
+	 	 res.redirect('/');
 	});
 
 	app.get('/current_user', function(req, res) { //not sure what to do with this?
@@ -132,13 +119,6 @@ module.exports.controller = function(app) {
 	  }
 	});
 
-	// app.get('/posts', function(req, res) {
-	//   Post
-	//     .findAll({ include: [User] })
-	//     .then(function(posts) {
-	//       res.send(posts);
-	//     });
-	// });
 
 	app.post('/posts', function(req, res) {
 	 
@@ -150,16 +130,13 @@ module.exports.controller = function(app) {
 	        author_id: req.session.currentUser,
 	        category_id: req.body.category_id
 	      }, function(newpost) {
-	        // res.send(newpost);
+	       
 	        console.log(newpost);
 	        res.redirect('/');
 	      });
 	  } else {
 	    res.status(403);
-	    res.send({
-	      err: 403,
-	      msg: 'You must log in to create posts'
-	    });
+	     res.redirect('/login');
 	  }
 	});
 
@@ -170,7 +147,7 @@ app.put('/article/author/:id', function(req, res) {
 	        article_title: req.body.title,
 	        article_desc: req.body.description
 	      }, req.params.id, function(data) {
-	        // res.send(newpost);
+	       
 	        console.log(data);
 	        res.redirect('/');
 	    });

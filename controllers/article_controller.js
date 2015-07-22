@@ -21,14 +21,31 @@ module.exports.controller = function(app) {
   	});
 
 	app.get('/contribute/:id', function (req, res) {
-    	// Article.find( req.params.id, function (data) {
-      		//when you have sessions figured out
-      		//use '/contribute/:id' as the route, and pass in the id when user logs in
-      	Article.getWithAuthors( req.params.id, function (data){
-	     	console.log(data);      		
-      	res.render('newPost', data);
-    	});
-  	});
+    	   if (req.session.currentUser === null) {
+            res.redirect( '/login' );
+          }   else {
+                 	Article.getWithAuthors( req.params.id, function (data){
+            	     	console.log(data);      		
+                  	res.render('newPost', data);
+                  });
+              }
+
+    
+  });
+
+  app.get('/contribute', function (req, res) {
+         if ( ( req.session.currentUser === null ) || ( req.session.currentUser === undefined ) ) {
+            res.redirect( '/login' );
+          }   else {
+              
+                  Article.getWithAuthors( req.params.id, function (data){
+                    console.log(data);          
+                    res.render('newPost', data);
+                  });
+              }
+
+    
+  });
 
   	
 
@@ -51,11 +68,6 @@ module.exports.controller = function(app) {
       res.redirect('/login');
       }
     });
-
-
-    // res.send({ msg: 'Successfully logged out' });
-
-   
 
 };
 
