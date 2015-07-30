@@ -1,40 +1,62 @@
-
-
- <header>
- 
-    <nav class="nav">
+<header>
+ <nav class="nav">
+     <div class = "cover">
      <div id='button'>
          <form action="/about">
-          <input type="submit" value="About">
+          <input id="but" type="submit" value="About">
          </form>
+      </div>
       </div>
      <!--  <a href="/categories">Category</a> -->
+
+      <div class = "cover">
       <div id='button'>
          <form action="/categories">
-          <input type="submit" value="Category">
+          <input id="but" type="submit" value="Category">
          </form>
       </div>
-      	
+      </div>
+        
+      {{#if user}}
+       <div class = "cover">
       <div id='button'>
-         <form action="/contribute/{{id}}">
-          <input type="submit" value="Contribute">
+         <form action="/contribute/{{user}}">
+          <input id="but" type="submit" value="Contribute">
          </form>
       </div>
-      	
+      </div>
+
+        {{else}}
+         <div class = "cover">
+      <div id='button'>
+         <form action="/contribute">
+          <input id="but" type="submit" value="Contribute">
+         </form>
+      </div>
+      </div>
+
+        {{/if}}
+          <div class = "cover">
        <div id='button'>
-        <form>
-        <input class="MyButton" type="button" value="Featured" onclick="window.location.href='https://en.wikipedia.org/wiki/Portal:Featured_content'" />
-        </form>
+        
+        <input id="but" class="feature" type="button" value="Featured" />
+       
+       </div>
        </div>
 
+        <div class = "cover">
        <div id='button'>
-        <form>
-        <input class="MyButton" type="button" value="Random" onclick="window.location.href='http://en.wikipedia.org/wiki/Special:Random'" />
-        </form>
+        
+        <input id="but" class="random" type="button" value="Random" />
+      
+       </div>
        </div>
      
     </nav>
+    
     </header>
+
+
 
 <form action="/sendEmail/{{id}}" method="POST" style="clear: left; text-align: center;">
 	
@@ -48,3 +70,8 @@
 	<input type="submit" value="Submit">
 
 </form>
+
+
+<div id='globe'>
+
+</div>

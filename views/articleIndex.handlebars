@@ -1,40 +1,88 @@
 
 
  <header>
- 
-    <nav class="nav">
+ <nav class="nav">
+     <div class = "cover">
      <div id='button'>
          <form action="/about">
-          <input type="submit" value="About">
+          <input id="but" type="submit" value="About">
          </form>
+      </div>
       </div>
      <!--  <a href="/categories">Category</a> -->
+
+      <div class = "cover">
       <div id='button'>
          <form action="/categories">
-          <input type="submit" value="Category">
+          <input id="but" type="submit" value="Category">
          </form>
       </div>
-      	
+      </div>
+        
+      {{#if user}}
+       <div class = "cover">
       <div id='button'>
-         <form action="/contribute/{{id}}">
-          <input type="submit" value="Contribute">
+         <form action="/contribute/{{user}}">
+          <input id="but" type="submit" value="Contribute">
          </form>
       </div>
-      	
+      </div>
+
+        {{else}}
+         <div class = "cover">
+      <div id='button'>
+         <form action="/contribute">
+          <input id="but" type="submit" value="Contribute">
+         </form>
+      </div>
+      </div>
+
+        {{/if}}
+          <div class = "cover">
        <div id='button'>
-        <form>
-        <input class="MyButton" type="button" value="Featured" onclick="window.location.href='https://en.wikipedia.org/wiki/Portal:Featured_content'" />
-        </form>
+        
+        <input id="but" class="feature" type="button" value="Featured" />
+       
+       </div>
        </div>
 
+        <div class = "cover">
        <div id='button'>
-        <form>
-        <input class="MyButton" type="button" value="Random" onclick="window.location.href='http://en.wikipedia.org/wiki/Special:Random'" />
-        </form>
+        
+        <input id="but" class="random" type="button" value="Random" />
+      
+       </div>
        </div>
      
     </nav>
+    
     </header>
+
+
+
+    <div class='sign'>
+     
+              {{#if user}}
+                <p style="margin-right: 180px;"> Hello {{name}}</p> 
+                
+                 <div class='logout'>
+<form action="/sessions" method="POST">
+<input type="hidden" name="_method" value="DELETE">
+  
+  
+<input type="submit" value="Log Out">
+</form>
+</div>
+              {{else}}
+                <a href="/signup">Sign Up</a>
+                <a href="/login">Log In</a>
+
+         
+              {{/if}}
+   
+       <!-- <a href="/signup">Sign Up</a>
+                <a href="/login">Log In</a>   -->
+    </div>
 
 
 <h1 style="text-align: center">Article</h1>
@@ -43,22 +91,30 @@
 
 	<div class='cat'>
 		
-			<h3>{{articles.article_title}}</h3>
-			<p>Author: {{articles.name}}</p>
+			<h2>{{articles.articles.article_title}}</h2>
+			<h4>Author: {{articles.articles.name}}</h4>
 			<br>
-			<p>{{articles.article_desc}}</p>
+			<p>{{articles.articles.article_desc}}</p>
 	
 	<br>
 	<br>
 	<br>
 
-<p>Date last modified: {{articles.date}}</p>
+</div>
+<footer>
+  
 <br>
 <div id ='link'>
-<a href="/article/edit/{{articles.id}}">Edit this Article</a>
+<a href="/article/edit/{{articles.articles.id}}" style="text-align:left;">Edit this Article</a>
 </div>
 <div id='link'>
-<a href="/article/contact/{{articles.author_id}}">Contact: {{articles.name}}</a>
+<a href="/article/contact/{{articles.articles.author_id}}" style="text-align:right;">Contact: {{articles.articles.name}}</a>
 </div>
+<br>
+<br>
+<p>Date last modified: {{articles.articles.date}}</p>
+</footer>
+
+<div id='globe'>
 
 </div>

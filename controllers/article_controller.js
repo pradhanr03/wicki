@@ -5,17 +5,42 @@ module.exports.controller = function(app) {
 	//ARTIST INDEX
 //this renders all the artists in the artists table INDEX
 	app.get('/article/:id', function (req, res) {
-		Article.authorOfArticle( req.params.id, function (data){
-	     	console.log(data);
+		Article.authorOfArticle( req.params.id, function (articles){
+	     	var user = req.session.currentUser;
+      var name = req.session.name;
+      var id = req.session.id;
+    
+      console.log(">>>>>>>>>>>");
+
+      
+      var data ={
+              user: user,
+              name: name,
+              articles: articles
+         }
+
+        console.log(data);
 	      res.render('articleIndex', data);
 	    });
 	});
 
 	app.get('/article/edit/:id', function (req, res) {
-    	Article.find( req.params.id, function (data) {
+    	Article.find( req.params.id, function (articles) {
       		console.log("testing");
-          console.log(data);
-      		
+            var user = req.session.currentUser;
+      var name = req.session.name;
+      var id = req.session.id;
+    
+      console.log(">>>>>>>>>>>");
+
+      
+      var data ={
+              user: user,
+              name: name,
+              articles: articles
+         }
+
+        console.log(data);
       	res.render('articleEdit', data);
     	});
   	});
@@ -24,8 +49,21 @@ module.exports.controller = function(app) {
     	   if (req.session.currentUser === null) {
             res.redirect( '/login' );
           }   else {
-                 	Article.getWithAuthors( req.params.id, function (data){
-            	     	console.log(data);      		
+                 	Article.getWithAuthors( req.params.id, function (contribute){
+            	     	var user = req.session.currentUser;
+                    var name = req.session.name;
+                    var id = req.session.id;
+                  
+                    console.log(">>>>>>>>>>>");
+
+                    
+                    var data ={
+                            user: user,
+                            name: name,
+                            contribute: contribute
+                       }
+
+                      console.log(data); 		
                   	res.render('newPost', data);
                   });
               }
@@ -50,8 +88,22 @@ module.exports.controller = function(app) {
   	
 
   	app.get('/about', function (req, res) {
-  		Article.about( function (data) {
-	    console.log(data);
+  		Article.about( function (abouts) {
+	   
+        var user = req.session.currentUser;
+      var name = req.session.name;
+      var id = req.session.id;
+    
+      console.log(">>>>>>>>>>>");
+
+      
+      var data ={
+              user: user,
+              name: name,
+              abouts: abouts
+         }
+
+        console.log(data);
 	    
 	      res.render('about', data);
 	 	});
