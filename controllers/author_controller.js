@@ -81,11 +81,7 @@ module.exports.controller = function(app) {
 	          }
 	        });
 	      } else {
-	        res.status(400);
-	        res.send({
-	          err: 400,
-	          msg: 'Username not found'
-	        });
+	        res.redirect('/signup');
 	      }
 	    });
 	});
