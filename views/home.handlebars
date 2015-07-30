@@ -63,12 +63,11 @@
 
 
 
-
+ 
 <div class='sign'>
-     
-              {{#if user}}
-                <p style="margin-right: 180px;"> Hello {{name}}</p> 
-                
+      {{#if user}}
+<p class= "hello"> Hello {{name}}</p> 
+              
                  <div class='logout'>
 <form action="/sessions" method="POST">
 <input type="hidden" name="_method" value="DELETE">
@@ -80,13 +79,12 @@
               {{else}}
                 <a href="/signup">Sign Up</a>
                 <a href="/login">Log In</a>
-
-         
-              {{/if}}
+    {{/if}}
+             </div>
+          
    
-       <!-- <a href="/signup">Sign Up</a>
-                <a href="/login">Log In</a>   -->
-    </div>
+      
+
 
 <div id='globe'>
 <img src="../pic/knowledge_is_power.jpg" />
