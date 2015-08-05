@@ -247,7 +247,8 @@ li {
 }
 
 .about p{
-   position:absolute;
+   /*position:absolute;*/
+   position: fixed;
   width:800px;
   height:500px;
   z-index:15;
