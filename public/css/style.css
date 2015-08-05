@@ -15,7 +15,7 @@ body {
 
 .cover {
     float:left;
-    width: 170px;
+    width: 150px;
     padding: 10px;
     height: 100%;
 }
@@ -42,7 +42,7 @@ body {
   margin-left: 20%;
   margin-right: 15%;
   position: fixed;
-  background: grey;
+  background: #F0F0F0;
 
 
 }
@@ -68,6 +68,7 @@ body {
 
 #button input:hover {
    text-shadow: 1px 1px grey;
+   -moz-box-shadow: 3px 4px 0px 0px #894599;
 }
 
 #button:active {
@@ -112,6 +113,7 @@ body {
   height: 60%;
   margin-left: 10%;
   margin-right: 15%;
+  m
   float: left;
   overflow: scroll;
 }
@@ -211,13 +213,16 @@ header {
     height: 100px;
     width: 100%;
     background-color: lavender;
+    overflow: hidden;
 
     
 }
 
 footer {
-    height: 100px;
+    
+    margin-bottom: 20px;
     width: 100%;
+    position: fixed;
 }
 
 #link {
