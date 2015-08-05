@@ -28,7 +28,7 @@ body {
 }
 
 #but {
-  background-color: white;
+  background-color: lavender;
     background-repeat:no-repeat;
     border: none;
     cursor:pointer;
@@ -212,7 +212,7 @@ a:hover {
 header {
     height: 100px;
     width: 100%;
-    background-color: lavender;
+    background-color: white;
     overflow: hidden;
 
     
