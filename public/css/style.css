@@ -232,11 +232,14 @@ header {
     
 }
 
-footer {
+footer p {
     
-    margin-bottom: 20px;
+    margin-top: 49%;
     width: 100%;
     position: fixed;
+    font-size: 5px;
+    height: 8%;
+    text-align: center;
 }
 
 #link {
