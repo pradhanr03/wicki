@@ -1,57 +1,56 @@
 
-
- <header>
+<header>
  <nav class="nav">
-     <div class = "cover">
+     
      <div id='button'>
          <form action="/about">
           <input id="but" type="submit" value="About">
          </form>
-      </div>
+      
       </div>
      <!--  <a href="/categories">Category</a> -->
 
-      <div class = "cover">
+     
       <div id='button'>
          <form action="/categories">
           <input id="but" type="submit" value="Category">
          </form>
-      </div>
+     
       </div>
         
       {{#if user}}
-       <div class = "cover">
+       
       <div id='button'>
          <form action="/contribute/{{user}}">
           <input id="but" type="submit" value="Contribute">
          </form>
-      </div>
+    
       </div>
 
         {{else}}
-         <div class = "cover">
+        
       <div id='button'>
          <form action="/contribute">
           <input id="but" type="submit" value="Contribute">
          </form>
-      </div>
+
       </div>
 
         {{/if}}
-          <div class = "cover">
+         
        <div id='button'>
         
         <input id="but" class="feature" type="button" value="Featured" />
        
-       </div>
+    
        </div>
 
-        <div class = "cover">
+        
        <div id='button'>
         
         <input id="but" class="random" type="button" value="Random" />
       
-       </div>
+      
        </div>
      
     </nav>
