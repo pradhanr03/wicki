@@ -11,7 +11,7 @@ var logger = require('morgan');
 var path = require('path');
 var db = require('./db.js');
 var router = express.Router();
-var key = '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';
+var key = 'edited out for now';
 var sendgrid = require('sendgrid')(key);
 
 
