@@ -2,6 +2,8 @@ var root = __dirname;
 var express = require('express');
 var fs = require('fs');
 var app = express();
+var dotenv = require('dotenv');
+dotenv.load();
 var bodyParser = require('body-parser');
 var exphbs = require('express-handlebars');
 var bcrypt = require('bcrypt');
@@ -11,8 +13,8 @@ var logger = require('morgan');
 var path = require('path');
 var db = require('./db.js');
 var router = express.Router();
-var key = 'edited out for now';
-var sendgrid = require('sendgrid')(key);
+var sendkey = process.env.SECRET_KEY;
+var sendgrid = require('sendgrid')(sendkey);
 
 
 // app.listen(3000);
@@ -74,27 +76,27 @@ var data ={
   
 });
 
-app.post('/sendEmail/:id', function(req, res) {
+app.post('/send/:id', function(req, res) {
       db.find('authors', req.params.id, function (data) {
-        console.log(data[0]);
-        var email = data[0].email;
-        var message = req.body.description;
-        var sender = req.body.sender;
+            console.log(data[0]);
+            var mail = data[0].email;
+            var message = req.body.description;
+            var sender = req.body.sender;
 
-        console.log(email+message+sender);
+            
 
-          var payload = new sendgrid.Email({
-                to:       email,
-                from:     sender,
-                subject:  'Hello World',
-                text:     message
-          });
-
-          sendgrid.send(payload, function(err, json) {
-          if (err) { return console.error(err); }
+        var email     = new sendgrid.Email({
+          to:       mail,
+          from:     sender,
+          subject:  'Subject goes here',
+          text:     message
+        });
+        
+              
+                  sendgrid.send(email, function(err, json) {
+          if (err) { return res.redirect('/'); }
           res.redirect('/');
         });
-
       });
 
 

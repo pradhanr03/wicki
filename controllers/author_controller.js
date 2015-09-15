@@ -2,9 +2,7 @@
 // var router = express.Router();
 
 var bcrypt = require('bcrypt');
-// var u = 'wikipedia';
-// var pass = 'test1234';
-// var SendGrid = require('sendgrid')(process.env.u, process.env.pass);
+
 
 var Author = require('../models/author.js').Author;
 
@@ -20,8 +18,21 @@ module.exports.controller = function(app) {
 	});
 
 	app.get('/article/contact/:id', function (req, res) {
-		Author.find(req.params.id, function(data) {
+		Author.find(req.params.id, function(author) {
 			// res.render('articleIndex', data);
+			var user = req.session.currentUser;
+		      var name = req.session.name;
+		      var id = req.session.id;
+		    
+		      console.log(">>>>>>>>>>>");
+
+		      
+		      var data ={
+		              user: user,
+		              name: name,
+		              author: author
+         		}
+
 			console.log(data);
 			res.render('sendEmail', data);
 		});
